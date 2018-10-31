@@ -1,0 +1,9 @@
+#!/bin/bash
+
+CHECK_DURATION=10
+PACKETS=$( ( timeout $CHECK_DURATION tcpdump -i any port 501 2>/dev/null || true ) | wc -l )
+echo "Captured $PACKETS"
+
+if [ "$PACKETS" -lt 3 ]; then
+	echo test
+fi
